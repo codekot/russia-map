@@ -22,8 +22,20 @@ federal_subject_boundaries_group = folium.FeatureGroup(
 admin_L4_json = json.load(open("admin_level_4.geojson", "r", encoding="utf8"))
 federal_subject_boundaries_group.add_child(folium.GeoJson(data=admin_L4_json))
 
+municipal_associations_boundaries_group = folium.FeatureGroup(
+    name="Границы объединений муниципальных районов")
+admin_L5_json = json.load(open("admin_level_5.geojson", "r", encoding="utf8"))
+municipal_associations_boundaries_group.add_child(folium.GeoJson(data=admin_L5_json))
+
+municipal_districts_boundaries_group = folium.FeatureGroup(
+    name="Границы муниципальных районов субъектов федерации")
+admin_L6_json = json.load(open("admin_level_6.geojson", "r", encoding="utf8"))
+municipal_districts_boundaries_group.add_child(folium.GeoJson(data=admin_L6_json))
+
 map.add_child(state_boundaries_group)
 map.add_child(federal_district_boundaries_group)
 map.add_child(federal_subject_boundaries_group)
+map.add_child(municipal_associations_boundaries_group)
+map.add_child(municipal_districts_boundaries_group)
 map.add_child(folium.LayerControl())
 map.save("russia_map.html")
